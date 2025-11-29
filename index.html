@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rohit Singh - Portfolio</title>
+    <link rel="icon" href="./IMG_5462.JPG" type="image/jpg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0f1724;
+        --card: rgba(2, 2, 2, 0.8);
+        --accent: #e7af6e;
+        --muted: #94a3b8;
+        --glass: rgba(71, 44, 44, 0.03);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        background: rgb(39, 40, 40);
+        color: #e6eef8;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Animated particles background */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 10% 20%,
+            /* /* rgba(110, 231, 183, 0.15 */ #e7af6e 2px,
+            transparent 3px
+          ),
+          radial-gradient(circle at 80% 30%, #e7af6e 2px, transparent 3px),
+          radial-gradient(circle at 50% 80%, #e7af6e 3px, transparent 4px);
+        background-repeat: repeat;
+        background-size: 100px 100px;
+        animation: float 20s linear infinite;
+        z-index: -1;
+      }
+
+      @keyframes float {
+        0% {
+          background-position: 0 0, 0 0, 0 0;
+        }
+        100% {
+          background-position: 100px 100px, 100px 0, 0 100px;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      body > .container {
+        animation: fadeIn 1s ease forwards;
+      }
+
+      main {
+        animation: fadeIn 1.2s ease forwards;
+      }
+
+      .container {
+        max-width: 980px;
+        margin: 48px auto;
+        padding: 24px;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 14px;
+        padding: 22px;
+        box-shadow: 0 6px 30px rgba(2, 6, 23, 0.6);
+        backdrop-filter: blur(10px);
+        transition: box-shadow 0.3s ease, border 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .card:hover {
+        border: 2px solid var(--accent);
+        box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent),
+          0 0 30px var(--accent);
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .avatar {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        background: var(--glass);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 22px;
+        background: linear-gradient(90deg, #e7af6e, #e7af6e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      @media (max-width: 600px) {
+        .avatar {
+          width: 100px;
+          height: 100px;
+        }
+        h1 {
+          font-size: 24px;
+        }
+      }
+
+      h2 {
+        background: linear-gradient(90deg, #e7af6e, #e7af6e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 8px;
+      }
+      p.lead {
+        color: var(--muted);
+        margin: 6px 0 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 18px;
+        margin-top: 20px;
+      }
+      .about {
+        line-height: 1.6;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .skill {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+        color: #ebd08c;
+        transition: box-shadow 0.3s ease;
+        cursor: default;
+      }
+      .skill:hover {
+        box-shadow: 0 0 8px 2px #ebd08c;
+      }
+
+      .projects {
+        margin-top: 14px;
+        display: grid;
+        gap: 12px;
+      }
+      .project {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(0, 0, 0, 0.04)
+        );
+        padding: 12px;
+        border-radius: 12px;
+        transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+        border: 2px solid transparent;
+      }
+      .project:hover {
+        transform: translateY(-5px);
+        border: 2px solid var(--accent);
+        box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent),
+          0 0 30px var(--accent);
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      aside .contact {
+        background: var(--glass);
+        padding: 14px;
+        border-radius: 12px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: linear-gradient(90deg, var(--accent), #e7af6e);
+        color: #042018;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 8px #e7af6e;
+      }
+
+      .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #e7af6e, 0 0 25px #e7af6e;
+      }
+
+      a {
+        color: #e7af6e;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: #e7af6e;
+      }
+
+      footer {
+        margin-top: 22px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 880px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .avatar {
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        body {
+          font-size: 15px;
+        }
+        .container {
+          padding: 16px;
+        }
+        h1 {
+          font-size: 20px;
+        }
+        .btn {
+          padding: 8px 12px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <header>
+          <div class="avatar">
+            <img
+              src="./IMG_5462.JPG"
+              alt="Rohit Singh"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+              "
+            />
+          </div>
+          <div style="flex: 1">
+            <h1>Rohit Singh</h1>
+            <p class="lead">BCA(AI & DS) Student</p>
+          </div>
+          <div style="text-align: left">
+            <div class="meta">Location: Gurugram-122101, India</div>
+            <div class="meta">
+              Email:
+              <a href="mailto:rohitrk.singh1920@gmail.com"
+                >rohitrk.singh1920@gmail.com</a
+              >
+            </div>
+            <div class="meta">
+              Phone: <a href="tel:+919818951923">+919818951923</a>
+            </div>
+          </div>
+        </header>
+
+        <div class="grid">
+          <main>
+            <section class="about">
+              <h2>About Me</h2>
+              <p>
+                Heyy — I'm <strong>Rohit Singh</strong>, a dedicated student
+                pursuing a Bachelor of Computer Applications (BCA) with a
+                specialization in Artificial Intelligence and Data Science at
+                K.R. Mangalam University, Gurugram.
+              </p>
+              <p>
+                Passionate about problem-solving and technology, I enjoy
+                building efficient solutions and exploring how data and
+                development can drive impactful results. I have hands-on
+                experience with Java (DSA), Python, C, C++, and front-end
+                technologies like HTML, CSS, and JavaScript. Alongside
+                programming, I also work with Microsoft Power BI to transform
+                data into meaningful insights and visualizations.I'm eager to
+                keep learning, take on new challenges, and contribute to
+                projects where technology meets innovation.
+              </p>
+              <div class="skills">
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                  target="_blank"
+                  ><span class="skill">HTML</span></a
+                >
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+                  target="_blank"
+                  ><span class="skill">CSS</span></a
+                >
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+                  target="_blank"
+                  ><span class="skill">JavaScript</span></a
+                >
+                <a href="https://www.python.org/" target="_blank"
+                  ><span class="skill">Python</span></a
+                >
+                <a
+                  href="https://www.geeksforgeeks.org/c/c-hello-world-program/"
+                  target="_blank"
+                  ><span class="skill">C</span></a
+                >
+                <a
+                  href="https://www.geeksforgeeks.org/cpp/writing-first-c-program-hello-world-example/"
+                  target="_blank"
+                  ><span class="skill">C++</span></a
+                >
+                <a href="https://leetcode.com/problemset/" target="_blank"
+                  ><span class="skill">DSA(Java)</span></a
+                >
+                <a
+                  href="https://www.microsoft.com/en-us/power-platform/products/power-bi/getting-started-with-power-bi"
+                  target="_blank"
+                  ><span class="skill">Microsoft Power BI</span></a
+                >
+              </div>
+            </section>
+            <section class="projects">
+              <h2>Projects</h2>
+              <div class="project">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <strong>Personal Portfolio (this site)</strong>
+                  <span class="meta">2025</span>
+                </div>
+                <p class="meta">
+                  A simple responsive single-file portfolio built with HTML/CSS.
+                </p>
+                <a class="btn" href="./index.html">Contact about this</a>
+              </div>
+              <div class="project">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <strong>Hackathon Project</strong>
+                  <span class="meta">2025</span>
+                </div>
+                <p class="meta">
+                  A Effective Project which will help thousands of student and
+                  faculty in KRMU Campus as there is no Centaralized Canteen
+                  Management System which will work offline-first, built with
+                  HTML,CSS,JavaScript,LocalDatabase.
+                </p>
+                <a
+                  class="btn"
+                  href="https://rohitrksingh1920.github.io/BUILD-BEYOND-OSCM-KRMU/"
+                  >Contact about this</a
+                >
+              </div>
+              <div class="project">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <strong>College Assignment Tool</strong>
+                  <span class="meta">2025</span>
+                </div>
+                <p class="meta">A small HTML Project.</p>
+                <a
+                  class="btn"
+                  href=" https://rohitrksingh1920.github.io/BCA-Sec-A-Sem-1-HTML-Assignment/"
+                  >Contact about this</a
+                >
+              </div>
+              <div class="project">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <strong>Microsoft Power BI</strong>
+                  <span class="meta">2025</span>
+                </div>
+                <p class="meta">A small MADHAV E-COMMERCE SALES DASHBOARD.</p>
+                <a
+                  class="btn"
+                  href="https://app.powerbi.com/links/EUvr0Xfyxa?ctid=38fd5a4b-955f-455a-9ad2-d2daa5a4e4d0&pbi_source=linkShare&bookmarkGuid=a961e2c6-fba0-42dd-8ad6-241d8ff21eaf"
+                  >Contact about this</a
+                >
+              </div>
+            </section>
+            <section id="contact" style="margin-top: 18px">
+              <h2>Contact</h2>
+              <p class="meta">Interested in collaborating? Reach out.</p>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap">
+                <a class="btn" href="tel:+919818951923">Call Me</a>
+                <a class="btn" href="mailto:rohitrk.singh1920@gmail.com"
+                  >Email me</a
+                >
+              </div>
+            </section>
+          </main>
+          <aside>
+            <div class="contact">
+              <h3>Quick Info</h3>
+              <!-- <p class="meta">Birthday: 29 December 2004</p> -->
+              <p class="meta">College: K.R. Mangalam University, Gurugram</p>
+              <p class="meta">Skills level: Intermediate</p>
+              <p style="margin-top: 10px"><strong>Social</strong></p>
+              <p class="meta">
+                Phone: <a href="tel:+919818951923">+919818951923</a>
+              </p>
+              <p class="meta">
+                WhatsApp:
+                <a
+                  href="https://wa.me/9818951923/?text=I%20am%20interested%20in%20your%20services"
+                  target="_blank"
+                  >Message Me</a
+                >
+              </p>
+              <p class="meta">
+                LinkedIn:
+                <a
+                  href="https://www.linkedin.com/in/rohit-singh-6b5932286/"
+                  target="_blank"
+                  >@rohitkrsingh</a
+                >
+              </p>
+              <p class="meta">
+                GitHub:
+                <a href="https://github.com/rohitrksingh1920" target="_blank"
+                  >@rohitkrsingh</a
+                >
+              </p>
+              <p class="meta">
+                LeetCode:
+                <a href="https://leetcode.com/u/irohitrs01/" target="_blank"
+                  >@rohitkrsingh</a
+                >
+              </p>
+              <p class="meta">
+                Kaggle:
+                <a href="https://www.kaggle.com/irohitsingh01" target="_blank"
+                  >@rohitkrsingh</a
+                >
+              </p>
+            </div>
+          </aside>
+        </div>
+        <footer>Made by Rohit Singh • © 2025</footer>
+      </div>
+    </div>
+  </body>
+</html>
